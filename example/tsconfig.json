@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@bam.tech/react-native-app-security": ["../src/index"],
+      "@bam.tech/react-native-app-security/*": ["../src/*"]
+    }
+  }
+}
