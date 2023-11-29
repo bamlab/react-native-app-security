@@ -13,7 +13,7 @@
 
 # Installation and setup
 
-This packages is designed for use in expo apps with [development builds](https://docs.expo.dev/develop/development-builds/introduction/).
+This package is designed for use in expo apps with [development builds](https://docs.expo.dev/develop/development-builds/introduction/).
 
 ```sh
 yarn add @bam.tech/react-native-app-security
@@ -74,6 +74,13 @@ This package implements [public key pinning](https://cheatsheetseries.owasp.org/
 ### Generating the public key hashes
 
 TODO
+
+### Testing
+
+To test that SSL pinning is working as expected, you can:
+
+- break (change) a certificate and check that the connection fails _(don't forget to `yarn expo prebuild` then `yarn ios` or `yarn android` to rebuild the app)_
+- set up a proxy (we love [Proxyman](https://proxyman.io)) and check that the connection fails
 
 ## Certificate transparency
 
