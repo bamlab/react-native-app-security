@@ -68,6 +68,9 @@ android {
     targetSdkVersion safeExtGet("targetSdkVersion", 33)
     versionCode 1
     versionName "0.1.0"
+
+    // package-specific config fields
+    buildConfigField("String", "RNAS_PINNING_CONFIG", "\"${safeExtGet("RNAS_PINNING_CONFIG", "{}")}\"")
   }
   lintOptions {
     abortOnError false
@@ -86,4 +89,8 @@ repositories {
 dependencies {
   implementation project(':expo-modules-core')
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${getKotlinVersion()}"
+
+  // package-specific dependencies
+  implementation("com.squareup.okhttp3:okhttp:+")
+  implementation("com.facebook.react:react-native:+")
 }

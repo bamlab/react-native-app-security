@@ -48,6 +48,38 @@
         </dict>
       </dict>
     </dict>
+    <key>TSKConfiguration</key>
+    <dict>
+      <key>TSKSwizzleNetworkDelegates</key>
+      <true/>
+      <key>TSKPinnedDomains</key>
+      <dict>
+        <key>yahoo.com</key>
+        <dict>
+          <key>TSKEnforcePinning</key>
+          <true/>
+          <key>TSKIncludeSubdomains</key>
+          <true/>
+          <key>TSKPublicKeyHashes</key>
+          <array>
+            <string>TQEtdMbmwFgYUifM4LDF+xgEtd0z69mPGmkp014d6ZY=</string>
+            <string>rFjc3wG7lTZe43zeYTvPq8k4xdDEutCmIhI5dn4oCeE=</string>
+          </array>
+        </dict>
+        <key>google.com</key>
+        <dict>
+          <key>TSKEnforcePinning</key>
+          <true/>
+          <key>TSKIncludeSubdomains</key>
+          <true/>
+          <key>TSKPublicKeyHashes</key>
+          <array>
+            <string>We74o5ME3USRtL6+B2UhXnwY9FR91QPJMYDtUNk6tEc=</string>
+            <string>zCTnfLwLKbS9S2sbp+uFz4KZOocFvXxkV06Ce9O5M2w=</string>
+          </array>
+        </dict>
+      </dict>
+    </dict>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>
     <key>UIRequiredDeviceCapabilities</key>
