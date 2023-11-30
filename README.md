@@ -3,7 +3,7 @@
 <p align="center">Easily implement usual security measures in React Native Expo apps</p>
 
 - [SSL public key pinning](#ssl-pinning)
-- [🚧 Certificate transparency](#certificate-transparency)
+- [Certificate transparency](#certificate-transparency)
 - [🚧 "Recent screenshots" prevention](#recent-screenshots-prevention)
 
 > **⚠️ Disclaimer**<br/>
@@ -84,7 +84,14 @@ To test that SSL pinning is working as expected, you can:
 
 ## Certificate transparency
 
-TODO
+> **🥷 What's the threat?** Compromised certificate authorities. [More details](https://certificate.transparency.dev)
+
+- On iOS, [certificate transparency is enabled by default](https://developer.apple.com/documentation/ios-ipados-release-notes/ios-12_1_1-release-notes) since _iOS 12.1.1_
+- On Android, this package enables it using [appmatus/certificatetransparency](https://github.com/appmattus/certificatetransparency) for _Android >= 8.0_
+
+### Configuration
+
+None, enabled by default.
 
 ## "Recent screenshots" prevention
 
