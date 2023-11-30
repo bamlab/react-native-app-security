@@ -38,6 +38,9 @@
               "We74o5ME3USRtL6+B2UhXnwY9FR91QPJMYDtUNk6tEc=",
               "zCTnfLwLKbS9S2sbp+uFz4KZOocFvXxkV06Ce9O5M2w="
             ]
+          },
+          "preventRecentScreenshots": {
+            "enabled": true
           }
         }
       ]

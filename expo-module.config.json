@@ -1,7 +1,8 @@
 {
   "platforms": ["ios", "android"],
   "ios": {
-    "modules": ["RNASModule"]
+    "modules": ["RNASModule"],
+    "appDelegateSubscribers": ["RNASAppLifecycleDelegate"]
   },
   "android": {
     "modules": ["tech.bam.rnas.RNASModule"]

@@ -3,8 +3,9 @@ import {
   withInfoPlist,
   withGradleProperties,
 } from "@expo/config-plugins";
+import { RNASConfig } from "./types";
 
-type Props = { [hostName: string]: string[] } | undefined;
+type Props = RNASConfig["sslPinning"];
 
 const withSSLPinning: ConfigPlugin<Props> = (config, props) => {
   config = withInfoPlist(config, (config) => {

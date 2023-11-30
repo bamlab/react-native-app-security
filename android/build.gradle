@@ -71,6 +71,7 @@ android {
 
     // package-specific config fields
     buildConfigField("String", "RNAS_PINNING_CONFIG", "\"${safeExtGet("RNAS_PINNING_CONFIG", "{}")}\"")
+    buildConfigField("boolean", "RNAS_PREVENT_RECENT_SCREENSHOTS", safeExtGet("RNAS_PREVENT_RECENT_SCREENSHOTS", "false"))
   }
   lintOptions {
     abortOnError false

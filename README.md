@@ -4,7 +4,7 @@
 
 - [SSL public key pinning](#ssl-pinning)
 - [Certificate transparency](#certificate-transparency)
-- [🚧 "Recent screenshots" prevention](#recent-screenshots-prevention)
+- [Prevent "recent screenshots"](#prevent-recent-screenshots)
 
 > **⚠️ Disclaimer**<br/>
 > This package is intended to help implement a few basic security features but does not in itself guarantee that an app is secure.<br/>
@@ -32,6 +32,10 @@ Add the config plugin to `app.config.ts` / `app.config.js` / `app.json`:
             "TQEtdMbmwFgYUifM4LDF+xgEtd0z69mPGmkp014d6ZY=",
             "rFjc3wG7lTZe43zeYTvPq8k4xdDEutCmIhI5dn4oCeE="
           ]
+        },
+        "preventRecentScreenshots": {
+          "ios": { "enabled": true },
+          "android": { "enabled": true }
         }
       }
     ]
@@ -93,9 +97,29 @@ To test that SSL pinning is working as expected, you can:
 
 None, enabled by default.
 
-## "Recent screenshots" prevention
+## Prevent "recent screenshots"
 
-TODO
+> **🥷 What's the threat?** When the OS terminates the app, it may take a screenshot and store it on the device to display in the app switcher. This screenshot could leak sensitive data
+
+Mitigating this threat is achieved by:
+
+- Using [`FLAG_SECURE`](https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_SECURE) on Android < 13
+- Using [`Activity.setRecentScreenshotsEnabled`](<https://developer.android.com/reference/android/app/Activity#setRecentsScreenshotEnabled(boolean)>) on Android >= 13
+- Covering the app with the splashscreen on iOS (requires [expo-splash-screen](https://docs.expo.dev/versions/latest/sdk/splash-screen/) to be setup)
+
+### Configuration
+
+```jsonc
+[
+  "@bam.tech/react-native-app-security",
+  {
+    "preventRecentScreenshots": {
+      "ios": { "enabled": true },
+      "android": { "enabled": true }
+    }
+  }
+]
+```
 
 # Contributing
 
