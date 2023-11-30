@@ -91,6 +91,5 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${getKotlinVersion()}"
 
   // package-specific dependencies
-  implementation("com.squareup.okhttp3:okhttp:+")
   implementation("com.facebook.react:react-native:+")
 }
