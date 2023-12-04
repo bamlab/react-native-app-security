@@ -77,7 +77,11 @@ This package implements [public key pinning](https://cheatsheetseries.owasp.org/
 
 ### Generating the public key hashes
 
-TODO
+You'll need the certificates (`.cer` or `.crt`)
+
+```sh
+openssl x509 -in certificate.cer -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+```
 
 ### Testing
 
@@ -123,7 +127,7 @@ Mitigating this threat is achieved by:
 
 # Contributing
 
-TODO
+Contributions are welcome. See the [Expo modules docs](https://docs.expo.dev/modules/get-started/) for information on how to build/run/develop on the project.
 
 # 👉 About BAM
 
