@@ -48,6 +48,8 @@
         </dict>
       </dict>
     </dict>
+    <key>RNAS_PREVENT_RECENT_SCREENSHOTS</key>
+    <true/>
     <key>TSKConfiguration</key>
     <dict>
       <key>TSKSwizzleNetworkDelegates</key>

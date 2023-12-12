@@ -40,7 +40,8 @@
             ]
           },
           "preventRecentScreenshots": {
-            "enabled": true
+            "ios": { "enabled": true },
+            "android": { "enabled": true }
           }
         }
       ]
