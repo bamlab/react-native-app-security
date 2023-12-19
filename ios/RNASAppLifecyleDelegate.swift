@@ -2,11 +2,14 @@ import ExpoModulesCore
 import UIKit
 
 public class RNASAppLifecycleDelegate: ExpoAppDelegateSubscriber {
+    private var launchScreenViewController: UIViewController?
+
     public func applicationDidFinishLaunching(_ application: UIApplication) {
         if(!isPreventRecentScreenshotsEnabled()) {
             return
         }
-            application.ignoreSnapshotOnNextApplicationLaunch()
+        
+        application.ignoreSnapshotOnNextApplicationLaunch()
     }
     
     public func applicationWillResignActive(_ application: UIApplication) {
@@ -15,20 +18,18 @@ public class RNASAppLifecycleDelegate: ExpoAppDelegateSubscriber {
         }
         
         // https://developer.apple.com/documentation/uikit/app_and_environment/scenes/preparing_your_ui_to_run_in_the_background
-        
-        // TODO: better error handling in case there's an issue with the splashscreen (instead of !)
-        let launchScreen = UIStoryboard(name: "SplashScreen", bundle: nil).instantiateInitialViewController()!
-        launchScreen.modalPresentationStyle = .overFullScreen
-        
-        UIApplication.shared.windows.first?.rootViewController?.present(launchScreen, animated: false)
+                
+        if let launchScreen = UIStoryboard(name: "SplashScreen", bundle: nil).instantiateInitialViewController() {
+            launchScreen.modalPresentationStyle = .overFullScreen
+            getTopMostViewController().present(launchScreen, animated: false)
+            launchScreenViewController = launchScreen
+        }
     }
         
     public func applicationDidBecomeActive(_ application: UIApplication) {
-        if(!isPreventRecentScreenshotsEnabled()) {
-            return
+        launchScreenViewController?.dismiss(animated: false) {
+            self.launchScreenViewController = nil
         }
-
-        UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: false)
     }
 }
 
@@ -38,4 +39,17 @@ func isPreventRecentScreenshotsEnabled() -> Bool {
         return value
     }
     return false
+}
+
+
+func getTopMostViewController() -> UIViewController {
+    // We want to display the overlay over any content currently presented, including modals
+    
+    var topController: UIViewController = UIApplication.shared.windows.first!.rootViewController!
+    
+    while (topController.presentedViewController != nil) {
+        topController = topController.presentedViewController!
+    }
+    
+    return topController
 }

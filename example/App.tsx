@@ -1,8 +1,20 @@
-import { Button, StyleSheet, View } from "react-native";
+import { useState } from "react";
+import { Button, Modal, StyleSheet, View } from "react-native";
 
 export default function App() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   return (
     <View style={styles.container}>
+      <Modal visible={isModalVisible}>
+        <View style={styles.modal}>
+          <Button
+            title="close modal"
+            onPress={() => setIsModalVisible(false)}
+          />
+        </View>
+      </Modal>
+      <Button title="open modal" onPress={() => setIsModalVisible(true)} />
       <Button title="fetch - valid certificates" onPress={fetchValid} />
       <Button title="fetch - invalid certificates" onPress={fetchInvalid} />
     </View>
@@ -16,6 +28,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 16,
+  },
+  modal: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "lightblue",
   },
 });
 
