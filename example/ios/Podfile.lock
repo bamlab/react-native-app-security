@@ -447,7 +447,7 @@ PODS:
     - React-jsi (= 0.72.6)
     - React-logger (= 0.72.6)
     - React-perflogger (= 0.72.6)
-  - RNAS (0.1.1):
+  - RNAS (0.1.3):
     - ExpoModulesCore
     - TrustKit (~> 3.0.3)
   - SocketRocket (0.6.1)
@@ -661,11 +661,11 @@ SPEC CHECKSUMS:
   React-runtimescheduler: f23e337008403341177fc52ee4ca94e442c17ede
   React-utils: fa59c9a3375fb6f4aeb66714fd3f7f76b43a9f16
   ReactCommon: dd03c17275c200496f346af93a7b94c53f3093a4
-  RNAS: 9b977ccebdd5e07aa5286251885d808baaf1eaea
+  RNAS: 6ee0db1ee999e6cbb05d476b1bfbcb0313f09036
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   TrustKit: 7858ea59d0e226b1457b2e9cc8b95d77ab21d471
   Yoga: b76f1acfda8212aa16b7e26bcce3983230c82603
 
 PODFILE CHECKSUM: 6daa8bab0f91b52da2001d6b9f17878279fbf1a9
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.13.0

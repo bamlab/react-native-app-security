@@ -1,7 +1,7 @@
 import { ConfigPlugin } from "@expo/config-plugins";
-import withSSLPinning from "./withSSLPinning";
-import withpreventRecentScreenshots from "./withPreventRecentScreenshots";
 import { RNASConfig } from "./types";
+import withpreventRecentScreenshots from "./withPreventRecentScreenshots";
+import withSSLPinning from "./withSSLPinning";
 
 const withRNAS: ConfigPlugin<RNASConfig> = (config, props) => {
   config = withSSLPinning(config, props.sslPinning);
