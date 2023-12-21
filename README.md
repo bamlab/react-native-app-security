@@ -5,6 +5,7 @@
 - [SSL public key pinning](#ssl-pinning)
 - [Certificate transparency](#certificate-transparency)
 - [Prevent "recent screenshots"](#prevent-recent-screenshots)
+- [Safe Keyboard Detector](#safe-keyboard-detector)
 
 > **⚠️ Disclaimer**<br/>
 > This package is intended to help implement a few basic security features but does not in itself guarantee that an app is secure.<br/>
@@ -125,9 +126,29 @@ Mitigating this threat is achieved by:
 ]
 ```
 
+## Safe Keyboard Detector
+
+> **🥷 What's the threat?** A third-party keyboard might embed a malicious keylogger to record passwords and sensitive data. [More details](https://www.synopsys.com/blogs/software-security/mitigate-third-party-mobile-keyboard-risk.html)
+
+Mitigating this threat is achieved by:
+
+- On Android, comparing the current keyboard id with a list of [keyboard packages that we deem safe](./android/src/main/java/tech/bam/rnas/RNASModule.kt#31).
+- On iOS, doing nothing specific since iOS already prevent the use of third-party keyboard on sensitive fields such as passwords.
+
+```tsx
+import { SafeKeyboardDetector } from '@bam.tech/react-native-app-security';
+
+const isCurrentKeyboardSafe = SafeKeyboardDetector.isCurrentKeyboardSafe() // will always return true on iOS
+
+// Prompt the user to change the current keyboard
+SafeKeyboardDetector.showInputMethodPicker() // can only be called on Android
+```
+
 # Contributing
 
 Contributions are welcome. See the [Expo modules docs](https://docs.expo.dev/modules/get-started/) for information on how to build/run/develop on the project.
+
+When making a change to the `plugin` folder, you'll need to run `yarn build` before prebuilding and building the example app.
 
 # 👉 About BAM
 

@@ -1,1 +1,7 @@
-// No JS API for now, but without this file expo plugin resolution fails
+import RNASModule from "./RNASModule";
+import { SafeKeyboardDetectorInterface } from "./types";
+
+export const SafeKeyboardDetector: SafeKeyboardDetectorInterface = {
+  isCurrentKeyboardSafe: RNASModule.isCurrentKeyboardSafe,
+  showInputMethodPicker: RNASModule.showInputMethodPicker,
+};
