@@ -6,7 +6,7 @@ public class RNASModule: Module {
     // There's nothing here related to SSL pinning because we use TrustKit's "auto-setup" via the config in `Info.plist`
     
     Function("showInputMethodPicker") {() in
-          throw RNASModuleError.methodNotImplemented
+          throw InputMethodPickerUnavailableException()
         }
 
     Function("isCurrentKeyboardSafe") {() in
@@ -15,6 +15,9 @@ public class RNASModule: Module {
   }
 }
 
-enum RNASModuleError: Error {
-    case methodNotImplemented
+
+internal class InputMethodPickerUnavailableException: Exception {
+  override var reason: String {
+    return "Method not implemented on iOS since third-party keyboards security issues are not relevant on iOS."
+  }
 }
