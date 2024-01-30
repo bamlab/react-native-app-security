@@ -68,6 +68,8 @@ const fetchInvalid = async () => {
 };
 
 const checkIsKeyboardSafe = () => {
-  const isKeyboardSafe = SafeKeyboardDetector.isCurrentKeyboardSafe();
+  const isKeyboardSafe =
+    SafeKeyboardDetector.getCurrentInputMethodInfo().isInDefaultSafeList;
+  console.log(SafeKeyboardDetector.getCurrentInputMethodInfo().inputMethodId);
   console.warn("is Keyboard safe", isKeyboardSafe);
 };
