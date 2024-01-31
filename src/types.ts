@@ -1,7 +1,7 @@
 export type SafeKeyboardDetectorInterface = {
   /**
    * Compare the current keyboard package name with a list of default safe keyboard package names on Android
-   * Will always return {isInDefaultSafeList: true, inputMethodId: ""} on iOS
+   * Will always return {isInDefaultSafeList: true, inputMethodId: "iosKeyboard"} on iOS
    *
    * @example
    * const { isInDefaultSafeList, inputMethodId } = getCurrentInputMethodInfo();

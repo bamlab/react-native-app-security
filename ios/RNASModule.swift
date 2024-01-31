@@ -10,7 +10,7 @@ public class RNASModule: Module {
         }
 
     Function("getCurrentInputMethodInfo") {() in
-          return ["isInDefaultSafeList": true, "inputMethodId": ""]
+          return ["isInDefaultSafeList": true, "inputMethodId": "iosKeyboard"]
     }
   }
 }
