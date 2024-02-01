@@ -136,12 +136,15 @@ Mitigating this threat is achieved by:
 - On iOS, doing nothing specific since iOS already prevent the use of third-party keyboard on sensitive fields such as passwords.
 
 ```tsx
-import { SafeKeyboardDetector } from '@bam.tech/react-native-app-security';
+import { SafeKeyboardDetector } from "@bam.tech/react-native-app-security";
 
-const isCurrentKeyboardSafe = SafeKeyboardDetector.isCurrentKeyboardSafe() // will always return true on iOS
+const { isInDefaultSafeList, inputMethodId } = getCurrentInputMethodInfo(); // Will always return {isInDefaultSafeList: true, inputMethodId: "iosKeyboard"} on iOS
+if (!isInDefaultSafeList) {
+  console.warn(`Your current keyboard (${inputMethodId}) is not safe`);
+}
 
 // Prompt the user to change the current keyboard
-SafeKeyboardDetector.showInputMethodPicker() // can only be called on Android
+SafeKeyboardDetector.showInputMethodPicker(); // can only be called on Android
 ```
 
 # Contributing

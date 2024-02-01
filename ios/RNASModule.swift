@@ -9,11 +9,13 @@ public class RNASModule: Module {
           throw InputMethodPickerUnavailableException()
         }
 
-    Function("isCurrentKeyboardSafe") {() in
-          return true
+    Function("getCurrentInputMethodInfo") {() in
+          return ["isInDefaultSafeList": true, "inputMethodId": "iosKeyboard"]
     }
   }
 }
+
+
 
 
 internal class InputMethodPickerUnavailableException: Exception {

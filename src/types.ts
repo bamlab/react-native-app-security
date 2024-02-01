@@ -1,17 +1,21 @@
-export type SafeKeyboardDetectorInterface ={
+export type SafeKeyboardDetectorInterface = {
   /**
-   * Compare the current keyboard package name with a list of safe keyboard package names on Android
-   * Will always return true on iOS
-   *
-   * @param customAllowedKeyboardList a list keyboard package names. If not provided, a default list is used.
+   * Compare the current keyboard package name with a list of default safe keyboard package names on Android
+   * Will always return {isInDefaultSafeList: true, inputMethodId: "iosKeyboard"} on iOS
    *
    * @example
-   * const isSafe = isCurrentKeyboardSafe(["com.touchtype.swiftkey", "com.samsung.android", "com.google.android"])
+   * const { isInDefaultSafeList, inputMethodId } = getCurrentInputMethodInfo();
+   * if (!isInDefaultSafeList) {
+   *  console.warn(`Your current keyboard (${inputMethodId}) is not safe`);
+   * }
    */
-  isCurrentKeyboardSafe: (customAllowedKeyboardList?: string[]) => boolean;
+  getCurrentInputMethodInfo: () => {
+    isInDefaultSafeList: boolean;
+    inputMethodId: string;
+  };
   /**
    * Prompt the user to change his current keyboard to a safe one.
    * Will throw an error if used on iOS
    */
   showInputMethodPicker: () => void;
-}
+};
