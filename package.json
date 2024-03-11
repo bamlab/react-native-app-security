@@ -1,6 +1,6 @@
 {
   "name": "@bam.tech/react-native-app-security",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Easily implement usual security measures in React Native Expo apps",
   "main": "build/index.js",
   "types": "build/index.d.ts",
