@@ -32,7 +32,7 @@ class RNASModule : Module() {
   get() = requireNotNull(appContext.reactContext)
 }
 
-val defaultAllowedKeyboardPackagesList = arrayOf("com.touchtype.swiftkey", "com.samsung.android", "com.google.android")
+val defaultAllowedKeyboardPackagesList = arrayOf("com.touchtype.swiftkey", "com.samsung.android", "com.google.android", "com.sec.android.inputmethod")
 
 
 /**
