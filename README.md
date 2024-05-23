@@ -10,7 +10,7 @@
 > **⚠️ Disclaimer**<br/>
 > This package is intended to help implement a few basic security features but does not in itself guarantee that an app is secure.<br/>
 > Refer to [OWASP's resources](https://mas.owasp.org) for more information on mobile app security.<br/>
-> You can also [contact us](#👉-about-bam) if you need help with securing your app.
+> You can also [contact us](https://www.bam.tech/en/contact) if you need help with securing your app.
 
 # Installation and setup
 
@@ -75,6 +75,8 @@ This package implements [public key pinning](https://cheatsheetseries.owasp.org/
   }
 ]
 ```
+
+Please note that you'll need to provide *2* public key hashes. This is to encourage having proper procedures in place to avoid locking users out, [as described here in the TrustKit docs](https://github.com/datatheorem/TrustKit/blob/master/docs/getting-started.md#always-provide-at-least-one-backup-pin).
 
 ### Generating the public key hashes
 
