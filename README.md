@@ -76,7 +76,30 @@ This package implements [public key pinning](https://cheatsheetseries.owasp.org/
 ]
 ```
 
-Please note that you'll need to provide *2* public key hashes. This is to encourage having proper procedures in place to avoid locking users out, [as described here in the TrustKit docs](https://github.com/datatheorem/TrustKit/blob/master/docs/getting-started.md#always-provide-at-least-one-backup-pin).
+Please note that you'll need to provide _2_ public key hashes. This is to encourage having proper procedures in place to avoid locking users out, [as described here in the TrustKit docs](https://github.com/datatheorem/TrustKit/blob/master/docs/getting-started.md#always-provide-at-least-one-backup-pin).
+
+#### Pinning subdomains
+
+To pin a specific subdomain, simply include it in the string you provide, eg:
+
+```jsonc
+    "sslPinning": {
+      "subdomain.domain.com": [/* ... */]
+    }
+```
+
+To pin a domain and all its subdomains, use a wildcard:
+
+```jsonc
+    "sslPinning": {
+      // domain.com and all its subdomains will be pinned
+      "*.domain.com": [/* ... */]
+    }
+```
+
+> The wildcard can only be used for the full lefmost part of the hostname.
+>
+> These are invalid: `*domain.com`, `domain.*.com`, `sub.*.domain.com`
 
 ### Generating the public key hashes
 
@@ -153,7 +176,7 @@ SafeKeyboardDetector.showInputMethodPicker(); // can only be called on Android
 
 Contributions are welcome. See the [Expo modules docs](https://docs.expo.dev/modules/get-started/) for information on how to build/run/develop on the project.
 
-When making a change to the `plugin` folder, you'll need to run `yarn build` before prebuilding and building the example app.
+When making a change to the `plugin` folder, you'll need to run `yarn prepare` before prebuilding and building the example app.
 
 # 👉 About BAM
 

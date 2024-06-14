@@ -30,7 +30,7 @@
         "../app.plugin.js",
         {
           "sslPinning": {
-            "yahoo.com": [
+            "*.yahoo.com": [
               "TQEtdMbmwFgYUifM4LDF+xgEtd0z69mPGmkp014d6ZY=",
               "rFjc3wG7lTZe43zeYTvPq8k4xdDEutCmIhI5dn4oCeE="
             ],
