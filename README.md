@@ -65,8 +65,7 @@ This package implements [public key pinning](https://cheatsheetseries.owasp.org/
   "@bam.tech/react-native-app-security",
   {
     "sslPinning": {
-      // The hostname you want to pin, without `https://`.
-      // yahoo.com and *all its subdomains* will be pinned
+      // The hostname you want to pin, without `https://`
       "yahoo.com": [
         // The public key hashes for the pinned certificates, without a `sha256/` prefix
         "TQEtdMbmwFgYUifM4LDF+xgEtd0z69mPGmkp014d6ZY=",
