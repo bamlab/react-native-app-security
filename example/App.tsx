@@ -18,6 +18,10 @@ export default function App() {
       <Button title="open modal" onPress={() => setIsModalVisible(true)} />
       <Button title="fetch - valid certificates" onPress={fetchValid} />
       <Button title="fetch - invalid certificates" onPress={fetchInvalid} />
+      <Button
+        title="fetch - invalid certificates - subdodmain"
+        onPress={fetchInvalidSubdomain}
+      />
       <Button title="Is current keyboard safe?" onPress={checkIsKeyboardSafe} />
       {Platform.OS === "android" ? (
         <Button
@@ -59,6 +63,17 @@ const fetchValid = async () => {
 const fetchInvalid = async () => {
   try {
     const response = await fetch("https://yahoo.com");
+    console.warn("❌ invalid certificated but fetch succeeded", {
+      status: response.status,
+    });
+  } catch (error) {
+    console.warn("✅ invalid certificate and fetch failed", error);
+  }
+};
+
+const fetchInvalidSubdomain = async () => {
+  try {
+    const response = await fetch("https://login.yahoo.com");
     console.warn("❌ invalid certificated but fetch succeeded", {
       status: response.status,
     });
