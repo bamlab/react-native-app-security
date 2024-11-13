@@ -65,6 +65,10 @@ android {
     }
   }
 
+  kotlin {
+    jvmToolchain(17)
+  }
+
   namespace "tech.bam.rnas"
   defaultConfig {
     minSdkVersion safeExtGet("minSdkVersion", 21)
