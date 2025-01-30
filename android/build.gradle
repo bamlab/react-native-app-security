@@ -96,5 +96,5 @@ dependencies {
 
   // package-specific dependencies
   implementation("com.facebook.react:react-native:+")
-  implementation("com.appmattus.certificatetransparency:certificatetransparency-android:2.5+") // using `+` because minors are mostly automated updates of logs_list
+  implementation("com.appmattus.certificatetransparency:certificatetransparency-android:2.5.0")
 }
