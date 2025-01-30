@@ -96,5 +96,18 @@ dependencies {
 
   // package-specific dependencies
   implementation("com.facebook.react:react-native:+")
-  implementation("com.appmattus.certificatetransparency:certificatetransparency-android:2.5.0")
+
+  /*
+   * See https://github.com/bamlab/react-native-app-security/issues/15
+   * appmattus.certificatetransparency >= 2.5.75 is built with Kotlin 2.
+   * However, React Native projects < 0.77 are usually built with Kotlin 1.
+   * Avoid failing builds, at the cost of not getting the latest CT info
+   * TODO: Remove this when React Native 0.76 is EOL
+   */
+  def certificateTransparencyVersion = "2.5+"
+  if (getKotlinVersion().startsWith("1.")) {
+    certificateTransparencyVersion = "2.5.74"
+  }
+
+  implementation("com.appmattus.certificatetransparency:certificatetransparency:${certificateTransparencyVersion}")
 }
