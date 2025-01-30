@@ -23,7 +23,10 @@
     "@bam.tech/react-native-app-security",
     "RNAS"
   ],
-  "repository": "https://github.com/bamlab/react-native-app-security",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bamlab/react-native-app-security.git"
+  },
   "bugs": {
     "url": "https://github.com/bamlab/react-native-app-security/issues"
   },

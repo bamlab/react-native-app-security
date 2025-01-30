@@ -1,16 +1,18 @@
+name: 🚀 Release
+
 on:
   workflow_dispatch:
     inputs:
       increment:
         type: choice
         options:
-          - major
-          - minor
           - patch
+          - minor
+          - major
 
 jobs:
   release:
-    name: 🚀 Release
+    name: Release
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -28,6 +30,10 @@ jobs:
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
+      - name: npm config
+        run: |
+          npm config set --global //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
 
       - name: Install dependencies
         run: yarn --frozen-lockfile
