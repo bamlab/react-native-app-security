@@ -40,6 +40,7 @@
     "expo-modules-core": "^1.5.11",
     "np": "^10.0.5"
   },
+  "packageManager": "yarn@1.22.21",
   "peerDependencies": {
     "expo": "*",
     "react": "*",
