@@ -14,7 +14,7 @@
     "expo-module": "expo-module",
     "open:ios": "open -a \"Xcode\" example/ios",
     "open:android": "open -a \"Android Studio\" example/android",
-    "release": "np --no-tests"
+    "release:local": "GITHUB_TOKEN=$(gh auth token) release-it"
   },
   "keywords": [
     "react-native",
@@ -38,7 +38,7 @@
     "@types/react": "^18.0.25",
     "expo-module-scripts": "^3.0.11",
     "expo-modules-core": "^1.5.11",
-    "np": "^10.0.5"
+    "release-it": "^18.1.2"
   },
   "packageManager": "yarn@1.22.21",
   "peerDependencies": {
