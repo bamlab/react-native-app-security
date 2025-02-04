@@ -51,11 +51,13 @@ const styles = StyleSheet.create({
 
 const fetchValid = async () => {
   try {
+    debugger
     const response = await fetch("https://google.com");
     console.warn("✅ valid certificate and fetch succeeded", {
       status: response.status,
     });
   } catch (error) {
+    debugger
     console.warn("❌ valid certificate but fetch failed", error);
   }
 };
