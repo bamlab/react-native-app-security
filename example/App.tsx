@@ -16,10 +16,11 @@ export default function App() {
         </View>
       </Modal>
       <Button title="open modal" onPress={() => setIsModalVisible(true)} />
+      <Button title="fetch - no pin" onPress={fetchUnpinned} />
       <Button title="fetch - valid certificates" onPress={fetchValid} />
       <Button title="fetch - invalid certificates" onPress={fetchInvalid} />
       <Button
-        title="fetch - invalid certificates - subdodmain"
+        title="fetch - invalid certificates - subdomain"
         onPress={fetchInvalidSubdomain}
       />
       <Button title="Is current keyboard safe?" onPress={checkIsKeyboardSafe} />
@@ -49,6 +50,18 @@ const styles = StyleSheet.create({
   },
 });
 
+const fetchUnpinned = async () => {
+  try {
+    const response = await fetch("https://bing.com");
+    console.warn("✅ fetch succeeded", {
+      status: response.status,
+    });
+  } catch (error) {
+    console.warn("❌ fetch failed", error);
+  }
+};
+
+
 const fetchValid = async () => {
   try {
     const response = await fetch("https://google.com");
@@ -56,14 +69,14 @@ const fetchValid = async () => {
       status: response.status,
     });
   } catch (error) {
-    console.warn("❌ valid certificate but fetch failed", error);
+    console.warn("❌ valid certificate but fetch failed - public keys expire, make sure they are up to date", error);
   }
 };
 
 const fetchInvalid = async () => {
   try {
     const response = await fetch("https://yahoo.com");
-    console.warn("❌ invalid certificated but fetch succeeded", {
+    console.warn("❌ invalid certificate but fetch succeeded", {
       status: response.status,
     });
   } catch (error) {

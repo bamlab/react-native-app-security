@@ -8,16 +8,16 @@
     "ios": "expo run:ios"
   },
   "dependencies": {
-    "expo": "50.0.0-preview.7",
-    "expo-splash-screen": "~0.26.1",
-    "expo-status-bar": "~1.11.1",
+    "expo": "^51.0.0",
+    "expo-splash-screen": "~0.27.7",
+    "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
-    "react-native": "0.73.1"
+    "react-native": "0.74.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "@types/react": "~18.2.45",
-    "typescript": "^5.1.3"
+    "@babel/core": "^7.24.0",
+    "@types/react": "~18.2.79",
+    "typescript": "~5.3.3"
   },
   "private": true,
   "expo": {
