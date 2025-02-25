@@ -2,10 +2,20 @@
 
 <p align="center">Easily implement usual security measures in React Native Expo apps</p>
 
-- [SSL public key pinning](#ssl-pinning)
-- [Certificate transparency](#certificate-transparency)
-- [Prevent "recent screenshots"](#prevent-recent-screenshots)
-- [Safe Keyboard Detector](#safe-keyboard-detector)
+- [Installation and setup](#installation-and-setup)
+- [Features](#features)
+  - [SSL Pinning](#ssl-pinning)
+    - [Configuration](#configuration)
+      - [Pinning subdomains](#pinning-subdomains)
+    - [Generating the public key hashes](#generating-the-public-key-hashes)
+    - [Testing](#testing)
+  - [Certificate transparency](#certificate-transparency)
+    - [Configuration](#configuration-1)
+  - [Prevent "recent screenshots"](#prevent-recent-screenshots)
+    - [Configuration](#configuration-2)
+  - [Safe Keyboard Detector](#safe-keyboard-detector)
+- [Contributing](#contributing)
+- [👉 About BAM](#-about-bam)
 
 > **⚠️ Disclaimer**<br/>
 > This package is intended to help implement a few basic security features but does not in itself guarantee that an app is secure.<br/>
@@ -54,7 +64,7 @@ yarn expo prebuild
 
 ## SSL Pinning
 
-> **🥷 What's the threat?** Attackers intercepting your app's network requests and accessing private data or sending malicious responses. [More details](https://mas.owasp.org/MASTG/General/0x04f-Testing-Network-Communication/#restricting-trust-identity-pinning)
+> **🥷 What's the threat?** Attackers intercepting your app's network requests and accessing private data or sending malicious responses. [More details](https://github.com/OWASP/owasp-mastg/blob/master/Document/0x04f-Testing-Network-Communication.md#restricting-trust-identity-pinning)
 
 This package implements [public key pinning](https://cheatsheetseries.owasp.org/cheatsheets/Pinning_Cheat_Sheet.html#public-key) using [TrustKit](https://github.com/datatheorem/TrustKit) on iOS and the certificate pinner included in OkHttp on Android.
 
