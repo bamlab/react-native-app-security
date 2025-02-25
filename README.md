@@ -66,7 +66,7 @@ yarn expo prebuild
 
 > **🥷 What's the threat?** Attackers intercepting your app's network requests and accessing private data or sending malicious responses. [More details](https://github.com/OWASP/owasp-mastg/blob/master/Document/0x04f-Testing-Network-Communication.md#restricting-trust-identity-pinning)
 
-This package implements [public key pinning](https://cheatsheetseries.owasp.org/cheatsheets/Pinning_Cheat_Sheet.html#public-key) using [TrustKit](https://github.com/datatheorem/TrustKit) on iOS and the certificate pinner included in OkHttp on Android.
+This package implements [public key pinning](https://cheatsheetseries.owasp.org/cheatsheets/Pinning_Cheat_Sheet.html#public-key) using [Apple's integrated SSL pinning mechanism](https://developer.apple.com/news/?id=g9ejcf8y) on iOS and the certificate pinner included in OkHttp on Android.
 
 ### Configuration
 
