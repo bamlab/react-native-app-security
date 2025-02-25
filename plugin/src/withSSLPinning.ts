@@ -7,40 +7,46 @@ import { RNASConfig } from "./types";
 
 type Props = RNASConfig["sslPinning"];
 
+type NSPinnedDomain = {
+  NSIncludesSubdomains: boolean;
+  NSPinnedLeafIdentities: {
+    "SPKI-SHA256-BASE64": string;
+  }[];
+};
+
 const withSSLPinning: ConfigPlugin<Props> = (config, props) => {
   config = withInfoPlist(config, (config) => {
     const infoPlist = config.modResults;
 
-    if (!props) {
-      delete infoPlist.TSKConfiguration;
-      return config;
-    }
+    // Clean up old TrustKit configuration if it exists
+    delete infoPlist.TSKConfiguration;
 
-    const domainsConfig = Object.fromEntries(
-      Object.entries(props).map(([hostName, certificates]) => {
-        // TrustKit does not recognize wildcards and won't pin anything if passed a domain with one
+    infoPlist.NSAppTransportSecurity ??= {};
+
+    const pinnedDomainsConfig = Object.fromEntries(
+      Object.entries(props ?? {}).map(([hostName, certificates]) => {
         const hasSubdomainsWildcard = hostName.startsWith("*.");
         const hostnameWithoutWildcard = hasSubdomainsWildcard
           ? hostName.slice(2)
           : hostName;
 
-        return [
-          hostnameWithoutWildcard,
-          {
-            TSKEnforcePinning: true,
-            TSKIncludeSubdomains: hasSubdomainsWildcard,
-            TSKPublicKeyHashes: certificates,
-          },
-        ];
+        // Create the pinned leaf identities array from the certificates
+        const pinnedLeafIdentities = certificates.map((certificate) => ({
+          "SPKI-SHA256-BASE64": certificate,
+        }));
+
+        const config: NSPinnedDomain = {
+          NSIncludesSubdomains: hasSubdomainsWildcard,
+          NSPinnedLeafIdentities: pinnedLeafIdentities,
+        };
+
+        return [hostnameWithoutWildcard, config];
       })
     );
 
-    infoPlist.TSKConfiguration = {
-      TSKSwizzleNetworkDelegates: true, // auto-setup on startup
-      TSKPinnedDomains: domainsConfig,
-    };
-
-    // TODO: warn when overriding?
+    (
+      infoPlist.NSAppTransportSecurity as Record<string, unknown>
+    ).NSPinnedDomains = pinnedDomainsConfig;
 
     return config;
   });
