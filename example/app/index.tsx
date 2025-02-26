@@ -61,7 +61,6 @@ const fetchUnpinned = async () => {
   }
 };
 
-
 const fetchValid = async () => {
   try {
     const response = await fetch("https://google.com");
@@ -69,7 +68,10 @@ const fetchValid = async () => {
       status: response.status,
     });
   } catch (error) {
-    console.warn("❌ valid certificate but fetch failed - public keys expire, make sure they are up to date", error);
+    console.warn(
+      "❌ valid certificate but fetch failed - public keys expire, make sure they are up to date",
+      error
+    );
   }
 };
 

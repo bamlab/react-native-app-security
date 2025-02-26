@@ -2,6 +2,7 @@
   "expo": {
     "name": "react-native-app-security-example",
     "slug": "react-native-app-security-example",
+    "scheme": "rnas-example",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -40,11 +41,16 @@
             ]
           },
           "preventRecentScreenshots": {
-            "ios": { "enabled": true },
-            "android": { "enabled": true }
+            "ios": {
+              "enabled": true
+            },
+            "android": {
+              "enabled": true
+            }
           }
         }
-      ]
+      ],
+      "expo-router"
     ]
   }
 }
