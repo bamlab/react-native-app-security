@@ -31,10 +31,12 @@ const config: ExpoConfig = {
       {
         sslPinning: {
           "*.yahoo.com": [
+            // Invalid pins to test failure
             "TQEtdMbmwFgYUifM4LDF+xgEtd0z69mPGmkp014d6ZY=",
             "rFjc3wG7lTZe43zeYTvPq8k4xdDEutCmIhI5dn4oCeE=",
           ],
           "google.com": [
+            // One valid pin to test success
             "2MXZa6jBZjmb6FYPT3yf4oZFB67aQGmsX4DQgddQ7XA=",
             "ylrexmVB/d9PHCARU9i0R9km/ahwuNpWaWXbpLyR7jQ=",
           ],
