@@ -1,9 +1,11 @@
 import { SafeKeyboardDetector } from "@bam.tech/react-native-app-security";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Button, Modal, Platform, StyleSheet, View } from "react-native";
 
 export default function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -22,6 +24,14 @@ export default function App() {
       <Button
         title="fetch - invalid certificates - subdomain"
         onPress={fetchInvalidSubdomain}
+      />
+      <Button
+        title="WebView - valid pin (Google)"
+        onPress={() => router.push("/webview-pin-ok")}
+      />
+      <Button
+        title="WebView - invalid pin (Yahoo)"
+        onPress={() => router.push("/webview-pin-ko")}
       />
       <Button title="Is current keyboard safe?" onPress={checkIsKeyboardSafe} />
       {Platform.OS === "android" ? (
@@ -61,7 +71,6 @@ const fetchUnpinned = async () => {
   }
 };
 
-
 const fetchValid = async () => {
   try {
     const response = await fetch("https://google.com");
@@ -69,7 +78,10 @@ const fetchValid = async () => {
       status: response.status,
     });
   } catch (error) {
-    console.warn("❌ valid certificate but fetch failed - public keys expire, make sure they are up to date", error);
+    console.warn(
+      "❌ valid certificate but fetch failed - public keys expire, make sure they are up to date",
+      error
+    );
   }
 };
 
