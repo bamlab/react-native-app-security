@@ -2,7 +2,13 @@ import ExpoModulesCore
 import UIKit
 
 public class RNASAppLifecycleDelegate: ExpoAppDelegateSubscriber {
-    private var launchScreenViewController: UIViewController?
+    private lazy var launchScreenWindow: UIWindow? = {
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        let launchScreen = UIStoryboard(name: "SplashScreen", bundle: nil).instantiateInitialViewController()!
+        window.rootViewController = launchScreen
+        window.windowLevel = .alert + 2 // React Native alert uses .alert + 1
+        return window
+    }()
 
     public func applicationDidFinishLaunching(_ application: UIApplication) {
         if(!isPreventRecentScreenshotsEnabled()) {
@@ -18,18 +24,12 @@ public class RNASAppLifecycleDelegate: ExpoAppDelegateSubscriber {
         }
         
         // https://developer.apple.com/documentation/uikit/app_and_environment/scenes/preparing_your_ui_to_run_in_the_background
-                
-        if let launchScreen = UIStoryboard(name: "SplashScreen", bundle: nil).instantiateInitialViewController() {
-            launchScreen.modalPresentationStyle = .overFullScreen
-            getTopMostViewController().present(launchScreen, animated: false)
-            launchScreenViewController = launchScreen
-        }
+        
+        launchScreenWindow?.makeKeyAndVisible()
     }
         
     public func applicationDidBecomeActive(_ application: UIApplication) {
-        launchScreenViewController?.dismiss(animated: false) {
-            self.launchScreenViewController = nil
-        }
+        launchScreenWindow?.isHidden = true
     }
 }
 
@@ -41,15 +41,3 @@ func isPreventRecentScreenshotsEnabled() -> Bool {
     return false
 }
 
-
-func getTopMostViewController() -> UIViewController {
-    // We want to display the overlay over any content currently presented, including modals
-    
-    var topController: UIViewController = UIApplication.shared.windows.first!.rootViewController!
-    
-    while (topController.presentedViewController != nil) {
-        topController = topController.presentedViewController!
-    }
-    
-    return topController
-}

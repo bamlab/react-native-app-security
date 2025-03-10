@@ -1,7 +1,7 @@
 import { SafeKeyboardDetector } from "@bam.tech/react-native-app-security";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Button, Modal, Platform, StyleSheet, View } from "react-native";
+import { Alert, Button, Modal, Platform, StyleSheet, View } from "react-native";
 
 export default function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -11,6 +11,7 @@ export default function App() {
     <View style={styles.container}>
       <Modal visible={isModalVisible}>
         <View style={styles.modal}>
+          <Button title="show an alert" onPress={() => Alert.alert("Hello")} />
           <Button
             title="close modal"
             onPress={() => setIsModalVisible(false)}
