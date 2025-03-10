@@ -2,7 +2,8 @@ import ExpoModulesCore
 import UIKit
 
 public class RNASAppLifecycleDelegate: ExpoAppDelegateSubscriber {
-    private var launchScreenViewController: UIViewController?
+    private var launchScreenWindow: UIWindow?
+
 
     public func applicationDidFinishLaunching(_ application: UIApplication) {
         if(!isPreventRecentScreenshotsEnabled()) {
@@ -18,18 +19,20 @@ public class RNASAppLifecycleDelegate: ExpoAppDelegateSubscriber {
         }
         
         // https://developer.apple.com/documentation/uikit/app_and_environment/scenes/preparing_your_ui_to_run_in_the_background
-                
-        if let launchScreen = UIStoryboard(name: "SplashScreen", bundle: nil).instantiateInitialViewController() {
-            launchScreen.modalPresentationStyle = .overFullScreen
-            getTopMostViewController().present(launchScreen, animated: false)
-            launchScreenViewController = launchScreen
-        }
+        
+        let window = UIWindow(frame: UIScreen.main.bounds)
+       
+        let launchScreen = UIStoryboard(name: "SplashScreen", bundle: nil).instantiateInitialViewController()!
+        
+        window.rootViewController = launchScreen
+        window.windowLevel = .alert + 2 // React Native alert uses .alert + 1
+        window.makeKeyAndVisible()
+        self.launchScreenWindow = window
     }
         
     public func applicationDidBecomeActive(_ application: UIApplication) {
-        launchScreenViewController?.dismiss(animated: false) {
-            self.launchScreenViewController = nil
-        }
+        launchScreenWindow?.isHidden = true
+        launchScreenWindow = nil
     }
 }
 
