@@ -41,15 +41,3 @@ func isPreventRecentScreenshotsEnabled() -> Bool {
     return false
 }
 
-
-func getTopMostViewController() -> UIViewController {
-    // We want to display the overlay over any content currently presented, including modals
-    
-    var topController: UIViewController = UIApplication.shared.windows.first!.rootViewController!
-    
-    while (topController.presentedViewController != nil) {
-        topController = topController.presentedViewController!
-    }
-    
-    return topController
-}
