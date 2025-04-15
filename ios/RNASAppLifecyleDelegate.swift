@@ -10,12 +10,12 @@ public class RNASAppLifecycleDelegate: ExpoAppDelegateSubscriber {
         return window
     }()
 
-    public func applicationDidFinishLaunching(_ application: UIApplication) {
-        if(!isPreventRecentScreenshotsEnabled()) {
-            return
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        if(isPreventRecentScreenshotsEnabled()) {
+            application.ignoreSnapshotOnNextApplicationLaunch()
         }
-        
-        application.ignoreSnapshotOnNextApplicationLaunch()
+    
+        return true
     }
     
     public func applicationWillResignActive(_ application: UIApplication) {
