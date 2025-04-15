@@ -14,8 +14,15 @@ public class RNASAppLifecycleDelegate: ExpoAppDelegateSubscriber {
         if(isPreventRecentScreenshotsEnabled()) {
             application.ignoreSnapshotOnNextApplicationLaunch()
         }
-    
+
+        clearAndDisableCache()
+
         return true
+    }
+
+    private func clearAndDisableCache() {
+        URLCache.shared.removeAllCachedResponses()
+        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
     }
     
     public func applicationWillResignActive(_ application: UIApplication) {

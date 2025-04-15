@@ -182,6 +182,18 @@ if (!isInDefaultSafeList) {
 SafeKeyboardDetector.showInputMethodPicker(); // can only be called on Android
 ```
 
+## [iOS only] Disable Default Caching in `Cache.db`
+
+> **🥷 Threat:** On iOS, every `NSURL` request may be cached by default in `Cache.db`, potentially storing sensitive data unless explicitly disabled. This can lead to unintentional data leaks.
+
+Mitigating this threat is achieved by:
+
+- Remove the cache by setting it to an empty cache:
+
+```swift
+URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+```
+
 # Contributing
 
 Contributions are welcome. See the [Expo modules docs](https://docs.expo.dev/modules/get-started/) for information on how to build/run/develop on the project.
