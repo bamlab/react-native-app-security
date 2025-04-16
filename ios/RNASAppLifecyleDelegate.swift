@@ -15,7 +15,10 @@ public class RNASAppLifecycleDelegate: ExpoAppDelegateSubscriber {
             application.ignoreSnapshotOnNextApplicationLaunch()
         }
 
-        clearAndDisableCache()
+        if(isDisablingCacheEnabled()){
+            clearAndDisableCache()
+        }
+
 
         return true
     }
@@ -48,3 +51,9 @@ func isPreventRecentScreenshotsEnabled() -> Bool {
     return false
 }
 
+func isDisablingCacheEnabled() -> Bool {
+    if let value = Bundle.main.object(forInfoDictionaryKey: "RNAS_DISABLE_CACHE") as? Bool {
+        return value
+    }
+    return false
+}
