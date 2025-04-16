@@ -49,6 +49,11 @@ const config: ExpoConfig = {
             enabled: true,
           },
         },
+        disableCache: {
+          ios: {
+            enabled: true,
+          },
+        },
       },
     ],
     "expo-router",
