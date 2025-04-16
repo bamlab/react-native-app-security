@@ -14,6 +14,7 @@
   - [Prevent "recent screenshots"](#prevent-recent-screenshots)
     - [Configuration](#configuration-2)
   - [Safe Keyboard Detector](#safe-keyboard-detector)
+  - [[EXPERIMENTAL - iOS only] Disable Default Caching in `Cache.db`](#experimental---ios-only-disable-default-caching-in-cachedb)
 - [Contributing](#contributing)
 - [👉 About BAM](#-about-bam)
 
@@ -182,16 +183,37 @@ if (!isInDefaultSafeList) {
 SafeKeyboardDetector.showInputMethodPicker(); // can only be called on Android
 ```
 
-## [iOS only] Disable Default Caching in `Cache.db`
+## [EXPERIMENTAL - iOS only] Disable Default Caching in `Cache.db`
+> ⚠️ **DISCLAIMER:** This experimental feature may impact app behavior. Use it at your own risk. Disabling caching can cause unexpected issues.  
+>  
+> **Possible side effects:**  
+> - Slower performance due to lack of cached responses  
+> - Higher network usage from repeated requests  
+> - Crashes in components expecting cached data  
+> - Features failing in offline mode
 
 > **🥷 Threat:** On iOS, every `NSURL` request may be cached by default in `Cache.db`, potentially storing sensitive data unless explicitly disabled. This can lead to unintentional data leaks.
 
 Mitigating this threat is achieved by:
 
+- Fully clearing the existing cache
 - Remove the cache by setting it to an empty cache:
 
 ```swift
 URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+```
+### Configuration
+If you want to enable this functionality, it need to be enabled in the app configuration file (by default it's disabled)
+
+```jsonc
+[
+  "@bam.tech/react-native-app-security",
+  {
+    "disableCache": {
+      "ios": { "enabled": true },
+    }
+  }
+]
 ```
 
 # Contributing
