@@ -41,6 +41,9 @@ export default function App() {
           onPress={() => SafeKeyboardDetector.showInputMethodPicker()}
         />
       ) : null}
+      {Platform.OS === "ios" ? (
+        <Button title="fake login route call" onPress={callLoginRoute} />
+      ) : null}
     </View>
   );
 }
@@ -113,4 +116,19 @@ const checkIsKeyboardSafe = () => {
     SafeKeyboardDetector.getCurrentInputMethodInfo().isInDefaultSafeList;
   console.log(SafeKeyboardDetector.getCurrentInputMethodInfo().inputMethodId);
   console.warn("is Keyboard safe", isKeyboardSafe);
+};
+
+const callLoginRoute = async () => {
+  try {
+    await fetch("http://localhost:8081/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: "example@myMail.com",
+        password: "a super strong password",
+      }),
+    });
+  } catch (error) {}
 };
