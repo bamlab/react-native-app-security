@@ -8,7 +8,7 @@ const withRNAS: ConfigPlugin<RNASConfig> = (config, props) => {
   config = withSSLPinning(config, props.sslPinning);
 
   config = withpreventRecentScreenshots(config, props.preventRecentScreenshots);
-  config = withDisableCache(config, props.preventRecentScreenshots);
+  config = withDisableCache(config, props.disableCache);
 
   return config;
 };

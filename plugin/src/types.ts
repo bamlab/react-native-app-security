@@ -6,4 +6,7 @@ export type RNASConfig = {
     ios?: { enabled: boolean };
     android?: { enabled: boolean };
   };
+  disableCache?: {
+    ios?: { enabled: boolean };
+  };
 };
