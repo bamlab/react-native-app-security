@@ -37,7 +37,7 @@ const config: ExpoConfig = {
           ],
           "google.com": [
             // One valid pin to test success
-            "2MXZa6jBZjmb6FYPT3yf4oZFB67aQGmsX4DQgddQ7XA=",
+            "84mRRa9Yj6rhmZjvR2x2Qx0Zc62GHteMSUWiR7dfoVk=",
             "ylrexmVB/d9PHCARU9i0R9km/ahwuNpWaWXbpLyR7jQ=",
           ],
         },
