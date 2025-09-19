@@ -21,7 +21,7 @@
 > **⚠️ Disclaimer**<br/>
 > This package is intended to help implement a few basic security features but does not in itself guarantee that an app is secure.<br/>
 > Refer to [OWASP's resources](https://mas.owasp.org) for more information on mobile app security.<br/>
-> You can also [contact us](https://www.bam.tech/en/contact) if you need help with securing your app.
+> You can also [contact us](https://apps.theodo.com/en/contact) if you need help with securing your app.
 
 # Installation and setup
 
@@ -184,12 +184,14 @@ SafeKeyboardDetector.showInputMethodPicker(); // can only be called on Android
 ```
 
 ## [EXPERIMENTAL - iOS only] Disable Default Caching in `Cache.db`
-> ⚠️ **DISCLAIMER:** This experimental feature may impact app behavior. Use it at your own risk. Disabling caching can cause unexpected issues.  
->  
-> **Possible side effects:**  
-> - Slower performance due to lack of cached responses  
-> - Higher network usage from repeated requests  
-> - Crashes in components expecting cached data  
+
+> ⚠️ **DISCLAIMER:** This experimental feature may impact app behavior. Use it at your own risk. Disabling caching can cause unexpected issues.
+>
+> **Possible side effects:**
+>
+> - Slower performance due to lack of cached responses
+> - Higher network usage from repeated requests
+> - Crashes in components expecting cached data
 > - Features failing in offline mode
 
 > **🥷 Threat:** On iOS, every `NSURL` request may be cached by default in `Cache.db`, potentially storing sensitive data unless explicitly disabled. This can lead to unintentional data leaks.
@@ -202,7 +204,9 @@ Mitigating this threat is achieved by:
 ```swift
 URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
 ```
+
 ### Configuration
+
 If you want to enable this functionality, it need to be enabled in the app configuration file (by default it's disabled)
 
 ```jsonc
@@ -210,7 +214,7 @@ If you want to enable this functionality, it need to be enabled in the app confi
   "@bam.tech/react-native-app-security",
   {
     "disableCache": {
-      "ios": { "enabled": true },
+      "ios": { "enabled": true }
     }
   }
 ]
@@ -224,6 +228,6 @@ When making a change to the `plugin` folder, you'll need to run `yarn prepare` b
 
 # 👉 About BAM
 
-We are a 100 people company developing and designing multi-platform applications with [React Native](https://www.bam.tech/expertise/react-native) using the Lean & Agile methodology. To get more information on the solutions that would suit your needs, feel free to get in touch by [email](mailto:contact@bam.tech) or through our [contact form](https://www.bam.tech/en/contact)!
+We are a 100 people company developing and designing multi-platform applications with [React Native](https://apps.theodo.com/expertise/react-native) using the Lean & Agile methodology. To get more information on the solutions that would suit your needs, feel free to get in touch by [email](mailto:contact-apps@theodo.com) or through our [contact form](https://apps.theodo.com/en/contact)!
 
 We will always answer you with pleasure 😁
