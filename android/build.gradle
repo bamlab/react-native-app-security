@@ -104,7 +104,7 @@ dependencies {
    * Avoid failing builds, at the cost of not getting the latest CT info
    * TODO: Remove this when React Native 0.76 is EOL
    */
-  def certificateTransparencyVersion = "2.5+"
+  def certificateTransparencyVersion = "2.8+"
   if (getKotlinVersion().startsWith("1.")) {
     certificateTransparencyVersion = "2.5.74"
   }
