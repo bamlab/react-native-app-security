@@ -35,6 +35,9 @@ jobs:
         run: |
           npm config set --global //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
 
+      - name: Enable Corepack (Yarn 4)
+        run: corepack enable
+
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
