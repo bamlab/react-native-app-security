@@ -37,7 +37,11 @@ public class SSLPinning : OkHttpClientFactory {
      * See more : https://github.com/appmattus/certificatetransparency#getting-started
      */
     if (Build.VERSION.SDK_INT >= 26) {
-      clientBuilder.addNetworkInterceptor(CTInterceptorBuilder().build())
+      clientBuilder.addNetworkInterceptor(
+        CTInterceptorBuilder()
+          .failOnError(BuildConfig.RNAS_CT_FAIL_ON_ERROR)
+          .build()
+      )
     }
 
     return clientBuilder.build()
