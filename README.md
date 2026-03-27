@@ -131,8 +131,12 @@ To test that SSL pinning is working as expected, you can:
 
 > **🥷 What's the threat?** Compromised certificate authorities. [More details](https://certificate.transparency.dev)
 
-- On iOS, [certificate transparency is enabled by default](https://developer.apple.com/documentation/ios-ipados-release-notes/ios-12_1_1-release-notes) since _iOS 12.1.1_
-- On Android, this package enables it using [appmatus/certificatetransparency](https://github.com/appmattus/certificatetransparency) for _Android >= 8.0_
+
+Certificate Transparency (CT) is a mechanism that ensures that certificates are publicly logged in auditable, append-only logs. Rather than directly verifying log inclusion, CT relies on Signed Certificate Timestamps (SCTs), which provide a cryptographic proof that a certificate has been submitted to a trusted log.
+
+- On iOS, [Certificate Transparency is enforced by default](https://developer.apple.com/documentation/ios-ipados-release-notes/ios-12_1_1-release-notes) since _iOS 12.1.1_. The system validates that certificates comply with CT requirements, including the presence of valid Signed Certificate Timestamps (SCTs) issued by trusted logs.
+
+- On Android, this package enables Certificate Transparency for _Android >= 8.0_ using [appmattus/certificatetransparency](https://github.com/appmattus/certificatetransparency). It installs a network interceptor that validates, for each request, that the server certificate contains valid SCTs issued by trusted CT logs. This verification relies on a static list of trusted logs (`log_list.json`) bundled at build time, with no dynamic updates at runtime.
 
 ### Configuration
 
