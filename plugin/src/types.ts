@@ -9,4 +9,7 @@ export type RNASConfig = {
   disableCache?: {
     ios?: { enabled: boolean };
   };
+  certificateTransparency?: {
+    android?: { failOnError?: boolean };
+  };
 };
