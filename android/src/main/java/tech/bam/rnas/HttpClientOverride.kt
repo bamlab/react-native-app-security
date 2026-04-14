@@ -1,13 +1,10 @@
 package tech.bam.rnas
 
-import android.os.Build
 import com.facebook.react.modules.network.OkHttpClientFactory;
 import com.facebook.react.modules.network.OkHttpClientProvider;
 
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
-
-import com.appmattus.certificatetransparency.CTInterceptorBuilder
 
 import org.json.JSONObject
 
@@ -29,16 +26,6 @@ public class SSLPinning : OkHttpClientFactory {
     }
 
     clientBuilder.certificatePinner(certificatePinnerBuilder.build())
-
-    // -- Certificate Transparency --
-
-    /*
-     * The library for certificate transparency does not support Android sdk version < 26 (Android 8.0) without setting up "desugaring"
-     * See more : https://github.com/appmattus/certificatetransparency#getting-started
-     */
-    if (Build.VERSION.SDK_INT >= 26) {
-      clientBuilder.addNetworkInterceptor(CTInterceptorBuilder().build())
-    }
 
     return clientBuilder.build()
   }
