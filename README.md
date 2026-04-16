@@ -65,6 +65,8 @@ yarn expo prebuild
 
 > **🥷 What's the threat?** Attackers intercepting your app's network requests and accessing private data or sending malicious responses. [More details](https://github.com/OWASP/owasp-mastg/blob/master/Document/0x04f-Testing-Network-Communication.md#restricting-trust-identity-pinning)
 
+> **ℹ️ Is SSL pinning still necessary?** With Certificate Transparency now widely enforced and Android restricting trust to system CAs by default (API 24+), the risk of rogue certificates has significantly decreased. SSL pinning remains a valuable **defense-in-depth** measure for high-sensitivity apps (banking, healthcare), but may not be worth the operational overhead (certificate rotation, risk of lockouts) for every app. See [OWASP's pinning guidance](https://cheatsheetseries.owasp.org/cheatsheets/Pinning_Cheat_Sheet.html) for more context.
+
 This package implements [public key pinning](https://cheatsheetseries.owasp.org/cheatsheets/Pinning_Cheat_Sheet.html#public-key) using [TrustKit](https://github.com/datatheorem/TrustKit) on iOS and the certificate pinner included in OkHttp on Android.
 
 ### Configuration
@@ -124,6 +126,10 @@ To test that SSL pinning is working as expected, you can:
 
 - break (change) a certificate and check that the connection fails _(don't forget to `yarn expo prebuild` then `yarn ios` or `yarn android` to rebuild the app)_
 - set up a proxy (we love [Proxyman](https://proxyman.io)) and check that the connection fails
+
+## Certificate Transparency
+
+This package previously included Certificate Transparency (CT) validation on Android using the [appmattus/certificatetransparency](https://github.com/appmattus/certificatetransparency) library. This feature has been deprecated and removed, as Google is deprecating the validation approach used by that library. On iOS, CT is [enforced at the system level](https://developer.apple.com/documentation/ios-ipados-release-notes/ios-12_1_1-release-notes) since iOS 12.1.1 and requires no additional code.
 
 ## Prevent "recent screenshots"
 
