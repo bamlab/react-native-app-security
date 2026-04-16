@@ -127,7 +127,7 @@ To test that SSL pinning is working as expected, you can:
 - break (change) a certificate and check that the connection fails _(don't forget to `yarn expo prebuild` then `yarn ios` or `yarn android` to rebuild the app)_
 - set up a proxy (we love [Proxyman](https://proxyman.io)) and check that the connection fails
 
-## Certificate Transparency
+## About Certificate Transparency
 
 This package previously included Certificate Transparency (CT) validation on Android using the [appmattus/certificatetransparency](https://github.com/appmattus/certificatetransparency) library. This feature has been deprecated and removed, as Google is deprecating the validation approach used by that library. On iOS, CT is [enforced at the system level](https://developer.apple.com/documentation/ios-ipados-release-notes/ios-12_1_1-release-notes) since iOS 12.1.1 and requires no additional code.
 
